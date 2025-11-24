@@ -5,57 +5,81 @@
   <title>AZMRA4U – מערכת רישום לחוגים</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- פאביקון – תייצרי קובץ favicon.png ותשימי אותו בתיקייה של האתר -->
-  <link rel="icon" type="image/png" href="favicon.png">
-
   <style>
+    :root {
+      --top-gradient-from: #1d4ed8;
+      --top-gradient-to:   #1e3a8a;
+      --nav-bg:            #020617;
+      --bg:                #e5edff;
+      --card-bg:           #ffffff;
+      --card-radius:       18px;
+      --text-main:         #0f172a;
+      --text-soft:         #6b7280;
+      --accent:            #2563eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      background: #eef2ff;
-      font-family: Arial, sans-serif;
-      color: #111827;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      direction: rtl;
+      text-align: right;
     }
 
-    /* כותרת עליונה + לוגו */
-    header {
-      background: linear-gradient(90deg, #1e3a8a, #2563eb);
-      color: white;
-      padding: 20px 16px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.25);
+    /* bar עליון */
+    .topbar {
+      background: linear-gradient(90deg, var(--top-gradient-from), var(--top-gradient-to));
+      color: #fff;
+      padding: 10px 16px;
+      font-size: 14px;
     }
 
-    .header-inner {
+    .topbar-inner {
       max-width: 1100px;
       margin: 0 auto;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      align-items: center;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
-    .logo-wrap {
+    .topbar-title {
+      font-weight: 600;
+    }
+
+    .topbar-sub {
+      font-size: 13px;
+      opacity: 0.9;
+    }
+
+    .logo-full {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
     .logo-circle {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: white;
-      color: #1e3a8a;
-      font-weight: bold;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--top-gradient-to);
       display: flex;
-      align-items: center;
       justify-content: center;
-      box-shadow: 0 0 8px rgba(255,255,255,0.7);
+      align-items: center;
+      font-weight: 700;
+      box-shadow: 0 0 10px rgba(15,23,42,0.25);
     }
 
     .logo-text-main {
-      font-size: 22px;
-      font-weight: bold;
+      font-size: 20px;
+      font-weight: 700;
     }
 
     .logo-text-sub {
@@ -63,25 +87,20 @@
       opacity: 0.9;
     }
 
-    .header-right {
-      text-align: left;
-      font-size: 13px;
-      opacity: 0.9;
-    }
-
-    /* ניווט */
+    /* תפריט ניווט */
     nav {
-      background: #1f2937;
-      padding: 10px 0;
+      background: var(--nav-bg);
+      color: #e5e7eb;
     }
 
-    nav .nav-inner {
+    .nav-inner {
       max-width: 1100px;
       margin: 0 auto;
       display: flex;
-      gap: 18px;
-      justify-content: center;
+      gap: 22px;
+      padding: 10px 16px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
     nav a {
@@ -93,109 +112,78 @@
     }
 
     nav a:hover {
-      background: #374151;
+      background: #111827;
     }
 
-    /* מעטפת כללית */
+    /* תוכן */
     .wrapper {
       max-width: 1100px;
-      margin: 0 auto;
-      padding: 20px 16px 30px;
+      margin: 26px auto 40px;
+      padding: 0 16px 16px;
     }
 
     .section {
-      background: white;
-      padding: 20px 18px;
-      border-radius: 14px;
-      margin-bottom: 20px;
-      box-shadow: 0 2px 10px rgba(15,23,42,0.08);
-    }
-
-    .section h2 {
-      margin-top: 0;
-      color: #1e3a8a;
-      font-size: 22px;
-      margin-bottom: 8px;
+      background: var(--card-bg);
+      border-radius: var(--card-radius);
+      padding: 22px 22px 24px;
+      margin-bottom: 18px;
+      box-shadow: 0 12px 30px rgba(15,23,42,0.10);
     }
 
     .section small {
       display: block;
       font-size: 12px;
-      color: #6b7280;
-      margin-bottom: 8px;
+      color: var(--text-soft);
+      margin-bottom: 4px;
+    }
+
+    .section h2 {
+      margin: 0 0 10px;
+      color: var(--accent);
+      font-size: 22px;
     }
 
     p {
-      line-height: 1.7;
-      font-size: 14px;
       margin: 0 0 10px;
+      line-height: 1.7;
+      font-size: 15px;
     }
 
-    /* גריד חוגים */
+    ul {
+      margin: 0 0 10px 0;
+      padding-right: 20px;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* חוגים */
     .courses-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
       gap: 14px;
-      margin-top: 14px;
+      margin-top: 12px;
     }
 
     .course-card {
-      background: #f9fafb;
-      border-radius: 12px;
-      border: 1px solid #dde3f5;
+      background: #f9fbff;
+      border-radius: 14px;
+      border: 1px solid #dbe4ff;
       padding: 14px;
     }
 
     .course-card h3 {
       margin: 0 0 6px;
-      color: #1d4ed8;
+      color: #1e3a8a;
       font-size: 18px;
     }
 
     .course-age {
       font-size: 12px;
-      color: #6b7280;
-      margin-bottom: 6px;
+      color: var(--text-soft);
+      margin-bottom: 4px;
     }
 
-    /* טופס רישום */
-    label {
-      margin-top: 10px;
-      display: block;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin: 4px 0 12px;
-      border-radius: 8px;
-      border: 1px solid #cbd5f5;
-      font-size: 14px;
-    }
-
-    input:focus, select:focus {
-      outline: 2px solid #2563eb;
-      border-color: #2563eb;
-    }
-
-    button {
-      background: #1e3a8a;
-      color: white;
-      border: none;
-      padding: 11px 18px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-size: 14px;
-      margin-top: 4px;
-    }
-
-    button:hover {
-      background: #172554;
-    }
-
-    /* טבלת מחירון */
+    /* מחירון */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -210,31 +198,66 @@
     }
 
     th {
-      background: #eff6ff;
+      background: #eff4ff;
       color: #1e3a8a;
     }
 
-    /* ספק מידע/הערות */
     .note {
       font-size: 12px;
-      color: #6b7280;
+      color: var(--text-soft);
       margin-top: 6px;
+    }
+
+    /* טופס רישום */
+    label {
+      font-weight: 600;
+      font-size: 14px;
+      display: block;
+      margin-top: 8px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 4px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      border: 1px solid #cbd5f5;
+      font-size: 14px;
+      font-family: inherit;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid var(--accent);
+      border-color: var(--accent);
+    }
+
+    button {
+      background: var(--accent);
+      color: #ffffff;
+      border: none;
+      padding: 11px 20px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 15px;
+      margin-top: 6px;
+    }
+
+    button:hover {
+      background: #1d4ed8;
     }
 
     footer {
       text-align: center;
-      padding: 16px;
-      font-size: 12px;
-      color: #6b7280;
+      padding: 18px;
+      font-size: 13px;
+      color: var(--text-soft);
     }
 
-    @media (max-width: 600px) {
-      .header-inner {
+    @media (max-width: 680px) {
+      .topbar-inner {
         flex-direction: column;
         align-items: flex-start;
-      }
-      .header-right {
-        text-align: right;
       }
     }
   </style>
@@ -242,25 +265,24 @@
 
 <body>
 
-  <!-- כותרת + לוגו -->
-  <header>
-    <div class="header-inner">
-      <div class="logo-wrap">
+  <!-- bar עליון -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div>
+        <div class="topbar-title">נבנה כחלק מלימודי QA – הדגמת אתר מערכת חוגים</div>
+        <div class="topbar-sub">בדיקות: פונקציונליות · UI · תרחישים · טפסים וזרימת משתמש</div>
+      </div>
+      <div class="logo-full">
         <div class="logo-circle">AZ</div>
         <div>
           <div class="logo-text-main">AZMRA4U</div>
           <div class="logo-text-sub">מערכת רישום וניהול חוגים</div>
         </div>
       </div>
-
-      <div class="header-right">
-        נבנה כחלק מלימודי QA – הדגמת אתר מערכת חוגים<br>
-        בדיקות: פונקציונליות · UI · טפסים · תרחישים וזרימת משתמש
-      </div>
     </div>
-  </header>
+  </div>
 
-  <!-- תפריט ניווט -->
+  <!-- ניווט -->
   <nav>
     <div class="nav-inner">
       <a href="#home">בית</a>
@@ -280,54 +302,48 @@
       <h2>ברוכים הבאים ל-AZMRA4U</h2>
       <p>
         AZMRA4U היא מערכת לדוגמה לניהול והרשמה לחוגים, שנבנתה כחלק מתהליך הלמידה שלי
-        בעולם בדיקות התוכנה (QA). המטרה – לתרגל בדיקות פונקציונליות, בדיקות UI,
-        תסריטי בדיקה (STD) וכתיבת STR, יחד עם חשיבה על חוויית משתמש ברורה ונעימה.
+        בעולם בדיקות התוכנה (QA). המערכת מדגימה אתר חוגים אמיתי – עם דף בית, חוגים,
+        מחירון, טופס רישום ופרטי יצירת קשר.
       </p>
       <p>
-        באתר אפשר לראות דף בית, רשימת חוגים, מחירון, טופס רישום, ופרטי קשר – כמו מערכת
-        אמיתית של חוגים בקהילה.
+        דרך האתר ניתן לתרגל בדיקות פונקציונליות, בדיקות UI, תרחישי בדיקה (STD) וכתיבת STR,
+        יחד עם חשיבה על חוויית משתמש ברורה ונעימה.
       </p>
     </section>
 
     <!-- אודות -->
     <section class="section" id="about">
       <small>אודות המערכת</small>
-      <h2>איך המערכת בנויה ולמה היא משמשת?</h2>
+      <h2>איך המערכת בנויה ולמה היא משמעותית?</h2>
       <p>
-        המערכת מדמה סביבת עבודה אמיתית: הורה נכנס לאתר, בודק אילו חוגים קיימים,
-        משווה מחירים, בוחר חוג מתאים, ממלא טופס רישום, ומשאיר פרטי קשר.
+        המערכת מדמה תהליך עבודה אמיתי: הורה נכנס לאתר, קורא על החוגים,
+        בודק מחירון, בוחר חוג מתאים, ממלא טופס רישום ומשאיר פרטי קשר.
       </p>
-      <p>
-        עבורי כבודקת תוכנה, המערכת משמשת כבסיס ל:
-      </p>
+      <p>האתר משמש אותי לתרגול:</p>
       <ul>
-        <li>כתיבת STR – תיעוד כל המסכים, הפיצ'רים והתרחישים המרכזיים.</li>
-        <li>כתיבת STD – כל טופס, כפתור ושדה מקבל תרחישי בדיקה מסודרים.</li>
-        <li>פתיחת באגים ב-Jira לפי תקלות שעולות במהלך הבדיקות.</li>
-        <li>בדיקות רספונסיביות – צפייה באתר במחשב ובנייד.</li>
+        <li>בדיקות פונקציונליות על טפסים, שדות חובה ותצוגת שגיאות.</li>
+        <li>בדיקות UI – עיצוב, יישור, צבעים, רווחים וקריאות.</li>
+        <li>בדיקות רספונסיביות – צפייה במחשב ובמובייל.</li>
+        <li>תרחישי קצה – שדות ריקים, נתונים לא תקינים, טקסטים ארוכים ועוד.</li>
       </ul>
-      <p class="note">
-        (*את תוכלי לכתוב ב-STR שלך בדיוק איך האתר נראה, אילו שדות קיימים, ואילו בדיקות
-        ביצעת על כל חלק במערכת.)
-      </p>
     </section>
 
     <!-- חוגים -->
     <section class="section" id="courses">
       <small>חוגים</small>
-      <h2>רשימת החוגים לדוגמה</h2>
+      <h2>רשימת חוגים לדוגמה</h2>
 
       <div class="courses-grid">
         <div class="course-card">
           <h3>חוג ציור</h3>
           <div class="course-age">כיתות: א'–ג'</div>
-          <p>פיתוח יצירתיות, עבודה עם צבעים, פסטל, גואש וטכניקות בסיסיות.</p>
+          <p>פיתוח יצירתיות, עבודה עם צבעים, טכניקות בסיסיות והבעה אישית.</p>
         </div>
 
         <div class="course-card">
           <h3>חוג ריקוד</h3>
           <div class="course-age">כיתות: ב'–ה'</div>
-          <p>מקצבים, תנועה, חיזוק הגוף ושיפור ביטחון עצמי דרך תנועה.</p>
+          <p>מקצבים, תנועה, חיזוק הגוף ותחושת ביטחון עצמי דרך ריקוד.</p>
         </div>
 
         <div class="course-card">
@@ -346,19 +362,17 @@
 
     <!-- מחירון -->
     <section class="section" id="pricing">
-      <small>מחירון לדוגמה</small>
-      <h2>מחירון חוגים (דוגמה)</h2>
-      <p>
-        המחירון כאן הוא לצורך הדגמה בלבד, ויכול לשמש אותך ב-STR ובמסמכי ניתוח לצורך בדיקות.
-      </p>
+      <small>מחירון</small>
+      <h2>מחירון חוגים – דוגמה</h2>
+      <p>המחירים כאן הינם לצורך הדגמה במסגרת פרויקט ה-QA.</p>
 
       <table>
         <thead>
           <tr>
             <th>חוג</th>
             <th>כיתות</th>
-            <th>מס' מפגשים בשבוע</th>
-            <th>מחיר חודשי (ש"ח)</th>
+            <th>מפגשים בשבוע</th>
+            <th>מחיר חודשי (₪)</th>
           </tr>
         </thead>
         <tbody>
@@ -388,67 +402,69 @@
           </tr>
         </tbody>
       </table>
-
       <p class="note">
-        אפשר להרחיב את הטבלה, להוסיף עמודת "סטטוס" (פתוח/מלא) ולהגדיר תרחישי בדיקה
-        שונים לכל סטטוס.
+        ניתן להרחיב את המחירון, להוסיף סטטוס לחוג (פתוח/מלא) ולהגדיר תרחישי בדיקה שונים לכל סטטוס.
       </p>
     </section>
 
-    <!-- טופס רישום -->
+    <!-- רישום -->
     <section class="section" id="signup">
-      <small>טופס רישום</small>
+      <small>רישום</small>
       <h2>טופס רישום לחוג</h2>
 
-      <label>שם מלא של הילד/ה:</label>
-      <input type="text" placeholder="הקלד/י שם מלא">
+      <form>
+        <label>שם מלא של הילד/ה:</label>
+        <input type="text" placeholder="הקלד/י שם מלא" required>
 
-      <label>כיתה:</label>
-      <input type="text" placeholder="לדוגמה: ג'">
+        <label>כיתה:</label>
+        <input type="text" placeholder="לדוגמה: ג'" required>
 
-      <label>בחירת חוג:</label>
-      <select>
-        <option>בחר חוג</option>
-        <option>חוג ציור</option>
-        <option>חוג ריקוד</option>
-        <option>חוג מחשבים</option>
-        <option>התעמלות קרקע</option>
-      </select>
+        <label>בחירת חוג:</label>
+        <select required>
+          <option value="">בחר חוג...</option>
+          <option>חוג ציור</option>
+          <option>חוג ריקוד</option>
+          <option>חוג מחשבים</option>
+          <option>התעמלות קרקע</option>
+        </select>
 
-      <label>שם הורה וטלפון ליצירת קשר:</label>
-      <input type="text" placeholder="שם הורה + 05X-XXXXXXX">
+        <label>שם הורה:</label>
+        <input type="text" placeholder="שם ההורה האחראי" required>
 
-      <label>הערות מיוחדות (אלרגיות, בקשות):</label>
-      <input type="text" placeholder="לא חובה">
+        <label>טלפון ליצירת קשר:</label>
+        <input type="tel" placeholder="058-7163206" required>
 
-      <button>שליחת טופס</button>
+        <label>אימייל ליצירת קשר:</label>
+        <input type="email" placeholder="odel3206@gmail.com">
+
+        <label>הערות מיוחדות (אלרגיות, בקשות):</label>
+        <textarea rows="3" placeholder="לא חובה"></textarea>
+
+        <button type="button">שליחת טופס (דוגמה)</button>
+      </form>
 
       <p class="note">
-        כרגע הכפתור הוא דוגמה בלבד ולא באמת שולח נתונים – זה מאפשר תרגול של בדיקות טפסים
-        בלי חיבור לשרת.
+        הטופס מדגים מבנה שדות לצורך פרויקט ה-QA, ללא שליחה אמיתית לשרת.
       </p>
     </section>
 
     <!-- צור קשר -->
     <section class="section" id="contact">
       <small>צור קשר</small>
-      <h2>פרטי קשר לדוגמה</h2>
+      <h2>פרטי קשר</h2>
       <p>
-        לשאלות, בירורים על חוגים או עזרה בהרשמה – ניתן לפנות:
+        לשאלות על המערכת, הבדיקות שבוצעו או תהליך הלמידה:
       </p>
       <p>
-        📧 מייל: <strong>info@azamra4u.com</strong><br>
-        ☎ טלפון מנהלה: <strong>02-0000000</strong>
-      </p>
-      <p class="note">
-        את יכולה לשנות כאן לפרטים אמיתיים או להשאיר כנתוני דוגמה לצורך הפרויקט.
+        📧 אימייל: <a href="mailto:odel3206@gmail.com">odel3206@gmail.com</a><br>
+        📱 טלפון: <a href="tel:0587163206">058-7163206</a>
       </p>
     </section>
 
   </div>
 
   <footer>
-    © כל הזכויות שמורות – AZMRA4U · אתר דוגמה לפרויקט QA
+    © AZMRA4U – אתר חוגים לדוגמה כחלק מלימודי QA
   </footer>
 
 </body>
